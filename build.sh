@@ -15,8 +15,6 @@ if [[ $1 == "debug" ]]; then
 
     g++ -g -DDEBUG -W -Wall -Werror -Wextra -O3 src/pixmap/pixmap.cpp src/main.cpp -o bin/main_debug -lSDL2 -lSDL2_ttf
 
-    # g++ -g -DDEBUG -W -Wall -Werror -Wextra -O3 src/pixmap/pixmap.cpp src/main.cpp `sdl2-config --cflags --libs` -o bin/main_debug -lSDL2_ttf
-
     if [[ $2 == "execute" ]]; then
 
         printf "\nExecution de la version DEBUG.\n\n"
