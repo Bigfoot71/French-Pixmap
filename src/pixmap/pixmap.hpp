@@ -3,8 +3,8 @@
     Author: Le Juez Victor
     Thanks to: Jacques-Olivier Lapeyre
 
-    Version file: 01
-    Date: 22/07/2022
+    Version file: 02
+    Date: 30/07/2022
 
 */
 
@@ -52,8 +52,8 @@ class Pixmap {
 
     void blit_line (Pixmap const &pix, int const line_number, int const x1, int const y1) const;
 
-    void draw_rectbox_ns (Rectbox const &rect, pixel const color); // (non-secure) Does not test for overtaking but faster. ! (does not manage the alpha channel)!
-    void draw_rectbox_ys (Rectbox const &rect, pixel const color); // (yes-secure) Test for pixmap overflows therefore slower.
+    void draw_rect (Rectbox const &rect, pixel const color);    // (non-secure) Does not test for overtaking but faster. ! (does not manage the alpha channel)!
+    void draw_rectbox (Rectbox const &rect, pixel const color); // (secure)     Test for pixmap overflows therefore slower.
 
     void fill (pixel const background_color); // Fill the pixmap with the desired color
     void grayscale (); // Converted to gray
