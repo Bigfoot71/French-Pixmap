@@ -3,15 +3,14 @@
     Author: Le Juez Victor
     Thanks to: Jacques-Olivier Lapeyre
 
-    Version file: 01
-    Date: 22/07/2022
+    Version file: 02
+    Date: 30/07/2022
 
 */
 
 #include <iostream>
 #include <SDL2/SDL.h>
-
-#include "pixmap.hpp"
+#include "Pixmap.hpp"
 
 /* VARIOUS MATHEMATICAL TOOLS */
 
@@ -132,7 +131,7 @@ void Pixmap::blit_line (Pixmap const &pix, int const line_number, int const x1, 
 
 }
 
-void Pixmap::draw_rectbox_ns (Rectbox const &rect, pixel const color)
+void Pixmap::draw_rect (Rectbox const &rect, pixel const color)
 {
     for (int y = rect.y1; y <= rect.y2; y++)
     {
@@ -143,7 +142,7 @@ void Pixmap::draw_rectbox_ns (Rectbox const &rect, pixel const color)
     }
 }
 
-void Pixmap::draw_rectbox_ys (Rectbox const &rect, pixel const color)
+void Pixmap::draw_rectbox (Rectbox const &rect, pixel const color)
 {
 
     Rectbox r (rect.x1, rect.y1, rect.x2, rect.y2);
