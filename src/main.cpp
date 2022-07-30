@@ -1,25 +1,20 @@
 /*
-
     Title: French Pixmap
-
     Author: Le Juez Victor
     Thanks to: Jacques-Olivier Lapeyre
-
-    Version file: 01
-    Date: 22/07/2022
-
+    Version file: 02
+    Date: 30/07/2022
 */
 
 #include <iostream>
 #include <string>
-
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
-#include "pixmap/pixmap.hpp"
+#include "Pixmap/Pixmap.hpp"
 
-const int WIN_W = 864,
-          WIN_H = 486;
+#define WIN_W 864
+#define WIN_H 486
 
 void blit_sin (Pixmap const &src, Pixmap &target, int const target_x1, int const target_y1, int const amplitude_x, float const phase, float const ripple_rate)
 {
@@ -53,7 +48,7 @@ void draw_french_flag (Pixmap &pix)
         else if (i == 1) colour = 0xFFFFFFFF;
         else    {        colour = 0xFFEF4135; rect.x2 += 1;}
 
-        pix.draw_rectbox_ys (rect, colour);
+        pix.draw_rectbox (rect, colour);
 
     }
 }
@@ -75,7 +70,7 @@ void draw_checkerboard (Pixmap &pix, int const side_length)
             int x1 = x * side_length; int y1 = y * side_length;
             Rectbox rect (x1, y1, x1 + side_length - 1, y1 + side_length - 1);
 
-            pix.draw_rectbox_ys (rect, colour);
+            pix.draw_rectbox (rect, colour);
 
         }
     }
@@ -144,6 +139,9 @@ int main (int argc, char** argv)
     int const image_x1 = (render.get_width()  - image.get_width())  / 2;
     int const image_y1 = (render.get_height() - image.get_height()) / 2;
 
+    int tex_w, tex_h; // Query on texture for get its dimension on 'tex_w && tex_h'
+    SDL_QueryTexture (tex, NULL, NULL, &tex_w, &tex_h);
+
     float phase_factor, ripple_rate;
     if (argc > 1) phase_factor = -atoi(argv[1]) * 0.001;
     else          phase_factor = -0.05;
@@ -169,7 +167,6 @@ int main (int argc, char** argv)
             {
                 switch (event.key.keysym.sym)
                 {
-
                     case SDLK_UP:
                         phase_factor -= 0.001; break;
                     case SDLK_DOWN:
@@ -178,9 +175,7 @@ int main (int argc, char** argv)
                         ripple_rate  -= 0.001; break;
                     case SDLK_RIGHT:
                         ripple_rate  += 0.001; break;
-
                     default: break;
-
                 }
             }
 
@@ -193,8 +188,6 @@ int main (int argc, char** argv)
 
         blit_sin (image, render, image_x1, image_y1, 50, (loop_nb * phase_factor), ripple_rate);
 
-        int tex_w, tex_h;
-        SDL_QueryTexture (tex, NULL, NULL, &tex_w, &tex_h);
         render.blit_on_texture_centered (tex, tex_w, tex_h);
 
         SDL_RenderCopy (ren, tex, NULL, NULL);
