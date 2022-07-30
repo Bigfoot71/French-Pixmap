@@ -13,7 +13,7 @@ if [[ $1 == "debug" ]]; then
 
     printf "Compilation en cours de la version DEBUG ..."
 
-    g++ -g -DDEBUG -W -Wall -Werror -Wextra -O3 src/pixmap/pixmap.cpp src/main.cpp -o bin/main_debug -lSDL2 -lSDL2_ttf
+    g++ -g -DDEBUG -W -Wall -Werror -Wextra -O3 src/Pixmap/Pixmap.cpp src/main.cpp -o bin/main_debug -lSDL2 -lSDL2_ttf
 
     if [[ $2 == "execute" ]]; then
 
@@ -31,7 +31,7 @@ else
 
     printf "Compilation en cours de la version RELEASE ..."
 
-    g++ -W -Wall -Werror -Wextra -O3 src/pixmap/pixmap.cpp src/main.cpp -o bin/main_release -lSDL2 -lSDL2_ttf
+    g++ -W -Wall -Werror -Wextra -O3 src/Pixmap/Pixmap.cpp src/main.cpp -o bin/main_release -lSDL2 -lSDL2_ttf
 
     if [[ $1 == "execute" ]]; then
 
